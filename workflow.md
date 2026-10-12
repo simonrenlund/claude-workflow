@@ -3,7 +3,7 @@
 ### Tickets, branches and PRs
 
 - One GitHub issue = one branch = one PR. Never commit directly to `main`.
-- Branch from the latest `main`, named `<issue-number>-<short-slug>` (e.g. `12-add-login-form`).
+- Branch from the latest `main`, named `<issue-number>-<short-slug>` (e.g. `12-add-login-form`). Always fast-forward local `main` first (`git fetch origin main:main`, or `git switch main && git pull --ff-only`); a stale local `main` makes `main...HEAD` diffs and reviews include work already merged upstream.
 - PR title uses Conventional Commits: `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`; add `!` for a breaking change (`feat!: …`). The title becomes the commit on `main`, so make it readable as a changelog line.
 - PR body starts with `Closes #<issue-number>`.
 - Before handing over, start a sub-agent that runs `/ponytail-review` on `git diff main...HEAD`, with the issue number for context. A fresh context reviews the code, not your intentions. Fix what it finds. If the ticket has a written spec, run `/mattpocock-skills:code-review` against `main` at the same time (it starts its own sub-agents).
