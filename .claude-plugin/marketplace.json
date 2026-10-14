@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-workflow",
+  "description": "Shared Claude Code workflow rules for my projects.",
+  "owner": {
+    "name": "simon renlund",
+    "url": "https://github.com/simonrenlund"
+  },
+  "plugins": [
+    {
+      "name": "workflow-rules",
+      "description": "Loads the shared workflow rules (tickets, branches, PRs, releases) into every session.",
+      "source": "./"
+    }
+  ]
+}

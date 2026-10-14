@@ -4,22 +4,36 @@ Shared Claude Code rules for my projects: one branch and squash-merged PR per ti
 
 ## Use in a project
 
-1. Clone this repo to `~/git/claude-workflow`.
-2. Add this line to the project's `CLAUDE.md`:
+The repo is a Claude Code plugin marketplace with one plugin, `workflow-rules`. Its `SessionStart` hook prints `workflow.md` into every session, local or remote.
 
-   ```markdown
-   @~/git/claude-workflow/workflow.md
+1. Commit this to the project's `.claude/settings.json`, so every session on the repo (including Claude Code on the web) installs the plugins the rules rely on:
+
+   ```json
+   {
+     "extraKnownMarketplaces": {
+       "mattpocock": { "source": { "source": "git", "url": "https://github.com/mattpocock/skills.git" } },
+       "ponytail": { "source": { "source": "git", "url": "https://github.com/DietrichGebert/ponytail.git" } },
+       "claude-workflow": { "source": { "source": "github", "repo": "simonrenlund/claude-workflow" } }
+     },
+     "enabledPlugins": {
+       "mattpocock-skills@mattpocock": true,
+       "ponytail@ponytail": true,
+       "workflow-rules@claude-workflow": true
+     }
+   }
    ```
 
-   Claude Code asks once to approve the external import.
-3. Apply the GitHub settings and triage labels from inside the project:
+   To install it by hand instead: `/plugin install workflow-rules --marketplace simonrenlund/claude-workflow`.
+2. Apply the GitHub settings and triage labels from inside the project:
 
    ```bash
    ~/git/claude-workflow/setup-repo.sh
    ```
 
-The rules assume the `mattpocock-skills` and `ponytail` plugins are installed, and that the project has run `/setup-matt-pocock-skills` with GitHub as its issue tracker.
+The rules assume the project has run `/setup-matt-pocock-skills` with GitHub as its issue tracker.
+
+Remote sessions can only fetch the marketplace while this repo is public.
 
 ## Updating
 
-Edit `workflow.md` here and push. Other machines pick it up with `git pull`. Every project that imports it gets the change in its next session.
+Edit `workflow.md` here, bump `version` in `.claude-plugin/plugin.json`, and push. Installed copies pick up the change on the next plugin update (`/plugin marketplace update claude-workflow`).
