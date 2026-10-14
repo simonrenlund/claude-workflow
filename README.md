@@ -32,7 +32,21 @@ The repo is a Claude Code plugin marketplace with one plugin, `workflow-rules`. 
 
 The rules assume the project has run `/setup-matt-pocock-skills` with GitHub as its issue tracker.
 
-Remote sessions can only fetch the marketplace while this repo is public.
+### Cloud sessions
+
+Cloud sessions (claude.ai/code, `claude --cloud`) don't install plugins from a repo's `.claude/settings.json`. Add this as the setup script of your cloud environment instead. It runs before Claude Code starts, and its result is cached:
+
+```bash
+#!/bin/bash
+claude plugin marketplace add mattpocock/skills
+claude plugin marketplace add DietrichGebert/ponytail
+claude plugin marketplace add simonrenlund/claude-workflow
+claude plugin install mattpocock-skills@mattpocock
+claude plugin install ponytail@ponytail
+claude plugin install workflow-rules@claude-workflow
+```
+
+A local session reached through Remote Control needs none of this.
 
 ## Updating
 
