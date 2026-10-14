@@ -23,8 +23,8 @@ The repo is a Claude Code plugin marketplace with one plugin, `workflow-rules`. 
    }
    ```
 
-   To install it by hand instead: `/plugin install workflow-rules --marketplace simonrenlund/claude-workflow`.
-2. Apply the GitHub settings and triage labels from inside the project:
+   To install it by hand instead: `/plugin marketplace add simonrenlund/claude-workflow`, then `/plugin install workflow-rules@claude-workflow`.
+2. Clone this repo to `~/git/claude-workflow` (only needed for this script), then apply the GitHub settings and triage labels from inside the project:
 
    ```bash
    ~/git/claude-workflow/setup-repo.sh
@@ -36,4 +36,4 @@ Remote sessions can only fetch the marketplace while this repo is public.
 
 ## Updating
 
-Edit `workflow.md` here, bump `version` in `.claude-plugin/plugin.json`, and push. Installed copies pick up the change on the next plugin update (`/plugin marketplace update claude-workflow`).
+Change `workflow.md` through a PR, like any other change. To ship it, open a `chore: release vX.Y.Z` PR that bumps `version` in `.claude-plugin/plugin.json`, and tag after it merges. Installed copies pick it up with `/plugin marketplace update claude-workflow`.
