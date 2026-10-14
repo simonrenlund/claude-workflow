@@ -1,0 +1,9 @@
+{
+  "name": "workflow-rules",
+  "version": "0.1.0",
+  "description": "Loads the shared workflow rules (tickets, branches, PRs, releases) into every session.",
+  "author": {
+    "name": "simon renlund",
+    "url": "https://github.com/simonrenlund"
+  }
+}
